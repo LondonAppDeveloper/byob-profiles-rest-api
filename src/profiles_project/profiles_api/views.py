@@ -10,6 +10,7 @@ from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import detail_route
 
 from . import serializers
 from . import models
@@ -122,6 +123,14 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.UpdateOwnProfile,)
     filter_backends = (filters.SearchFilter,)
     search_fields = ('name', 'email',)
+
+    @detail_route(methods=['get'])
+    def feed(self, request, pk=None):
+        items = models.ProfileFeedItem.objects.filter(user_profile_id=pk)
+        serializer = serializers.ProfileFeedItemSerializer(items, many=True)
+
+        return Response(serializer.data)
+
 
 
 class LoginViewSet(viewsets.ViewSet):
