@@ -28,11 +28,11 @@ Vagrant.configure("2") do |config|
     sudo pip install --upgrade pip
     # Install and configure python virtualenvwrapper.
     sudo pip install virtualenvwrapper
-    if ! grep -q VIRTUALENV_ALREADY_ADDED /home/ubuntu/.bashrc; then
-        echo "# VIRTUALENV_ALREADY_ADDED" >> /home/ubuntu/.bashrc
-        echo "WORKON_HOME=~/.virtualenvs" >> /home/ubuntu/.bashrc
-        echo "PROJECT_HOME=/vagrant" >> /home/ubuntu/.bashrc
-        echo "source /usr/local/bin/virtualenvwrapper.sh" >> /home/ubuntu/.bashrc
+    if ! grep -q VIRTUALENV_ALREADY_ADDED /home/vagrant/.bashrc; then
+        echo "# VIRTUALENV_ALREADY_ADDED" >> /home/vagrant/.bashrc
+        echo "WORKON_HOME=~/.virtualenvs" >> /home/vagrant/.bashrc
+        echo "PROJECT_HOME=/vagrant" >> /home/vagrant/.bashrc
+        echo "source /usr/local/bin/virtualenvwrapper.sh" >> /home/vagrant/.bashrc
     fi
   SHELL
 
